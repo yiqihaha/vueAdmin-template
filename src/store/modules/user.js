@@ -1,9 +1,9 @@
 import { login, logout, getInfo } from '@/api/login';
-import { getToken, setToken, removeToken } from '@/utils/auth';
+import { getToken, setToken, removeToken } from '@/utils/authStorage';
 
 const user = {
   state: {
-    token: getToken(),
+    // token: getToken(),
     name: '',
     avatar: '',
     roles: []
@@ -27,12 +27,12 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      const email = userInfo.email.trim();
+      const username = userInfo.username.trim();
       return new Promise((resolve, reject) => {
-        login(email, userInfo.password).then(response => {
+        login(username, userInfo.password, userInfo.rememberMe).then(response => {
+            console.log(response)
           const data = response.data;
           setToken(data.token);
-          commit('SET_TOKEN', data.token);
           resolve();
         }).catch(error => {
           reject(error);

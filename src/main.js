@@ -11,7 +11,7 @@ import 'nprogress/nprogress.css'
 import 'normalize.css/normalize.css'
 import '@/assets/iconfont/iconfont'
 import IconSvg from '@/components/Icon-svg/index.vue'
-import { getToken } from '@/utils/auth'
+import { getToken } from '@/utils/authStorage'
 
 Vue.config.productionTip = false
 
@@ -27,6 +27,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => {
+            console.log(res)
           const roles = res.data.role;
           store.dispatch('GenerateRoutes', { roles }).then(() => {
             router.addRoutes(store.getters.addRouters);

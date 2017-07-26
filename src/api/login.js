@@ -1,12 +1,13 @@
 import fetch from '@/utils/fetch';
 
-export function login(email, password) {
+export function login(username, password, rememberMe) {
   return fetch({
-    url: '/user/login',
+    url: '/api/authenticate',
     method: 'post',
     data: {
-      email,
-      password
+        username,
+        password,
+        rememberMe
     }
   });
 }
@@ -15,7 +16,6 @@ export function getInfo(token) {
   return fetch({
     url: '/user/info',
     method: 'get',
-    params: { token }
   });
 }
 
