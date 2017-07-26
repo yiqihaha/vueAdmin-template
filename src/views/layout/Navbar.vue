@@ -2,6 +2,8 @@
     <el-menu class="navbar" mode="horizontal">
         <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
         <levelbar></levelbar>
+        <tabs-view></tabs-view>
+        <screenfull class='screenfull'></screenfull>
         <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
                 <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
@@ -10,10 +12,15 @@
             <el-dropdown-menu class="user-dropdown" slot="dropdown">
                 <router-link class='inlineBlock' to="/">
                     <el-dropdown-item>
-                        Home
+                        首页
                     </el-dropdown-item>
                 </router-link>
-                <el-dropdown-item divided><span @click="logout" style="display:block;">LogOut</span></el-dropdown-item>
+                <a target='_blank' href="https://github.com/PanJiaChen/vue-element-admin/">
+                    <el-dropdown-item>
+                        项目地址
+                    </el-dropdown-item>
+                </a>
+                <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </el-menu>
@@ -22,12 +29,16 @@
 <script>
     import { mapGetters } from 'vuex';
     import Levelbar from './Levelbar';
+    import TabsView from './TabsView';
     import Hamburger from '@/components/Hamburger';
+    import Screenfull from '@/components/Screenfull';
 
     export default {
       components: {
-        Levelbar,
-        Hamburger
+          Levelbar,
+          TabsView,
+          Hamburger,
+          Screenfull
       },
       computed: {
         ...mapGetters([
