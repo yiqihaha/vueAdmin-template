@@ -12,10 +12,10 @@ export function login(username, password, rememberMe) {
   });
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return fetch({
-    url: '/user/info',
-    method: 'get',
+    url: '/api/userInfo',
+    method: 'post',
   });
 }
 

@@ -32,6 +32,8 @@
 
 <script>
     import {isWscnEmail} from '@/utils/validate';
+    import {login} from '@/api/login';
+    import {setToken, getToken, removeToken} from '@/utils/authStorage';
 
     export default {
         name: 'login',
@@ -72,26 +74,20 @@
                 this.$refs.loginForm.validate(valid => {
                     if (valid) {
                         this.loading = true;
-                        this.$store.dispatch('Login', this.loginForm).then(() => {
-                            this.loading = false;
+                        console.log(this.loginForm)
+                        login(this.loginForm.username, this.loginForm.password, this.loginForm.rememberMe).then(res => {
+                            setToken(res.data.id_token)
                             this.$router.push({path: '/'});
                         }).catch(() => {
                             this.loading = false;
                         });
                     } else {
+                        removeToken();
                         console.log('error submit!!');
                         return false;
                     }
                 });
             },
-            fetchData() {
-                getArticle().then(response => {
-                    this.postForm = response.data;
-                }).catch(err => {
-                    this.fetchSuccess = false;
-                    console.log(err);
-                });
-            }
         }
     }
 </script>
