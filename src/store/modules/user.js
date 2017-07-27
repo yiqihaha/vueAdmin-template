@@ -3,51 +3,53 @@ import { getToken, setToken, removeToken } from '@/utils/authStorage';
 
 const user = {
   state: {
-    // token: getToken(),
-    name: '',
+    userId: 0,
+    userName: '',
     avatar: '',
-    roles: []
+    auths: [],
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token;
+    SET_USER_ID: (state, userId) => {
+        state.userId = userId;
     },
-    SET_NAME: (state, name) => {
-      state.name = name;
+    SET_NAME: (state, userName) => {
+      state.name = userName;
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar;
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles;
+    SET_AUTHS: (state, auths) => {
+      state.auths = auths;
     }
   },
 
   actions: {
-    // 登录
-    Login({ commit }, userInfo) {
-      const username = userInfo.username.trim();
-      return new Promise((resolve, reject) => {
-        login(username, userInfo.password, userInfo.rememberMe).then(response => {
-            console.log(response)
-          const data = response.data;
-          setToken(data.token);
-          resolve();
-        }).catch(error => {
-          reject(error);
-        });
-      });
-    },
+    // // 登录
+    // Login({ commit }, userInfo) {
+    //   const username = userInfo.username.trim();
+    //   return new Promise((resolve, reject) => {
+    //     login(username, userInfo.password, userInfo.rememberMe).then(response => {
+    //         console.log(response)
+    //       const data = response.data;
+    //       setToken(data.token);
+    //       resolve();
+    //     }).catch(error => {
+    //       reject(error);
+    //     });
+    //   });
+    // },
 
 
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
+        getInfo().then(response => {
           const data = response.data;
-          commit('SET_ROLES', data.role);
-          commit('SET_NAME', data.name);
+          console.log(data)
+          commit('SET_AUTHS', data.auths);
+          commit('SET_USER_ID', data.userId);
+          commit('SET_NAME', data.userName);
           commit('SET_AVATAR', data.avatar);
           resolve(response);
         }).catch(error => {
@@ -60,8 +62,10 @@ const user = {
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
-          commit('SET_TOKEN', '');
-          commit('SET_ROLES', []);
+          commit('SET_AUTHS', '');
+          commit('SET_USER_ID', 0);
+          commit('SET_NAME', '');
+          commit('SET_AVATAR', '');
           removeToken();
           resolve();
         }).catch(error => {
@@ -73,7 +77,10 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
-        commit('SET_TOKEN', '');
+        commit('SET_AUTHS', '');
+        commit('SET_USER_ID', 0);
+        commit('SET_NAME', '');
+        commit('SET_AVATAR', '');
         removeToken();
         resolve();
       });

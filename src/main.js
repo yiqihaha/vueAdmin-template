@@ -22,22 +22,24 @@ const whiteList = ['/login'];
 router.beforeEach((to, from, next) => {
   NProgress.start();
   if (getToken()) {
-    if (to.path === '/login') {
-      next({ path: '/' });
-    } else {
-      if (store.getters.roles.length === 0) {
-        store.dispatch('GetInfo').then(res => {
-            console.log(res)
-          const roles = res.data.role;
-          store.dispatch('GenerateRoutes', { roles }).then(() => {
-            router.addRoutes(store.getters.addRouters);
-            next({ ...to });
-          })
-        })
-      } else {
+    // if (to.path === '/login') {
+    //   next({ path: '/' });
+    // }
+    // else {
+      // console.log('ssssssssssss')
+      // if (store.getters.roles.length === 0) {
+        // store.dispatch('GetInfo').then(res => {
+        //   const auths = res.data.auths;
+        //   console.log(auths)
+        //   store.dispatch('GenerateRoutes', { auths }).then(() => {
+        //     router.addRoutes(store.getters.addRouters);
+        //     next({ ...to });
+        //   })
+        // })
+      // } else {
         next();
-      }
-    }
+      // }
+    // }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
