@@ -2,7 +2,7 @@
 	<div class="dashboard-editor-container">
 		<div class=" clearfix">
 			<pan-thumb style="float: left" :image="avatar"> 你的权限:
-				<span class="pan-info-roles" v-for="item in roles">{{item}}</span>
+				<span class="pan-info-roles" v-for="item in auths">{{item}}</span>
 			</pan-thumb>
 			<a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" class="github-corner" aria-label="View source on Github">
 				<svg width="80" height="80" viewBox="0 0 250 250" style="fill:#4AB7BD; color:#fff; position: absolute; top: 50px; border: 0; right: 0;"
@@ -15,7 +15,7 @@
 				</svg>
 			</a>
 			<div class="info-container">
-				<span class="display_name">{{name}}</span>
+				<span class="display_name">{{userName}}</span>
 				<span style='font-size:20px;padding-top:20px;display:inline-block;'>普通编辑dashboard</span>
 			</div>
 		</div>
@@ -39,9 +39,10 @@
     },
     computed: {
       ...mapGetters([
-        'name',
+        'userName',
         'avatar',
-        'roles'
+        'auths',
+	  	'userId'
       ])
     }
   }

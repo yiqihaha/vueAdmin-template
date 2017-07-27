@@ -19,15 +19,14 @@
     },
     computed: {
       ...mapGetters([
-        'name',
+        'userName',
         'avatar',
-        'email',
-        'introduction',
-        'roles'
+        'userId',
+        'auths'
       ])
     },
     created() {
-      if (this.roles.indexOf('admin') >= 0) {
+      if (this.auths.indexOf('ROLE_ADMIN') >= 0) {
         return;
       }
       this.currentRole = 'DefaultDashboard';
