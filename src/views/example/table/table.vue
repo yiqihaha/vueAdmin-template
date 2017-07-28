@@ -224,24 +224,24 @@
     },
     methods: {
       getList() {
-//        this.listLoading = true;
-//        fetchList(this.listQuery).then(response => {
-//          this.list = response.data.items;
-//          this.total = response.data.total;
-//          this.listLoading = false;
-//        })
+        this.listLoading = true;
+        fetchList(this.listQuery).then(response => {
+          this.list = response.data.items;
+          this.total = response.data.total;
+          this.listLoading = false;
+        })
       },
-//      handleFilter() {
-//        this.getList();
-//      },
-//      handleSizeChange(val) {
-//        this.listQuery.limit = val;
-//        this.getList();
-//      },
-//      handleCurrentChange(val) {
-//        this.listQuery.page = val;
-//        this.getList();
-//      },
+      handleFilter() {
+        this.getList();
+      },
+      handleSizeChange(val) {
+        this.listQuery.limit = val;
+        this.getList();
+      },
+      handleCurrentChange(val) {
+        this.listQuery.page = val;
+        this.getList();
+      },
       timeFilter(time) {
         if (!time[0]) {
           this.listQuery.start = undefined;

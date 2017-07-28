@@ -15,7 +15,9 @@
                         首页
                     </el-dropdown-item>
                 </router-link>
-                <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+                <router-link class='inlineBlock' to="/login">
+                    <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+                </router-link>
             </el-dropdown-menu>
         </el-dropdown>
     </el-menu>
@@ -27,6 +29,7 @@
     import TabsView from './TabsView';
     import Hamburger from '@/components/Hamburger';
     import Screenfull from '@/components/Screenfull';
+    import router from '@/router'
 
     export default {
       components: {
@@ -46,8 +49,10 @@
           this.$store.dispatch('ToggleSideBar')
         },
         logout() {
-          this.$store.dispatch('LogOut').then(() => {
-            location.reload();  // 为了重新实例化vue-router对象 避免bug
+          this.$store.dispatch('FedLogOut').then(() => {
+              router.replace({
+                  path: 'login',
+              })
           });
         }
       }
