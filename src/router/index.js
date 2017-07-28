@@ -63,12 +63,12 @@ export const asyncRouterMap = [
   {
     path: '/table',
     component: Layout,
-    redirect: '/table/index',
+    redirect: 'noredirect',
     name: 'Table',
     icon: 'tubiaoleixingzhengchang',
     // noDropdown: true,
     children: [
-        { path: 'index', component: Table, name: 'Table', meta: { role: ['ROLE_ADMIN'] } },
+        { path: 'index', component: Table, name: 'SimpleTable', meta: { role: ['ROLE_ADMIN'] } },
         { path: 'table', component: ExampleTable, name: '综合table', icon: 'zonghe', meta: { role: ['ROLE_ADMIN'] } }
         ]
   },

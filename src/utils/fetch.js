@@ -40,16 +40,12 @@ service.interceptors.response.use(
                       duration: 5 * 1000
                   });
                   store.dispatch('FedLogOut').then(() => {
-                      // router.replace({
-                      //     path: 'login',
-                      //     query: {redirect: to.fullPath}
-                      // })
                       location.reload();
                   });
               }
           }
       }
-    return Promise.reject(error).catch(error);
+    return Promise.resolve(error)
   }
 )
 
