@@ -150,7 +150,7 @@
 </template>
 
 <script>
-//  import { fetchList, fetchPv } from 'api/article_table';
+  import { fetchList, fetchPv } from 'api/table';
   import { parseTime } from '@/utils';
 
   const calendarTypeOptions = [
@@ -207,7 +207,7 @@
       }
     },
     created() {
-//      this.getList();
+      this.getList();
     },
     filters: {
       statusFilter(status) {
