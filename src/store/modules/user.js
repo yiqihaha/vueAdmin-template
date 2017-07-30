@@ -1,31 +1,6 @@
 import { login, logout, getInfo } from '@/api/login';
 import { getToken, setToken, removeToken } from '@/utils/authStorage';
 
-const data3 = [
-    {
-        id: 1,
-        label: 'Example',
-        path: '/example',
-        children: [
-            {
-                id: 100,
-                label: 'Form',
-                path: 'index'},
-        ]
-    },
-
-    {
-        id: 2,
-        label: 'Table',
-        path: '/table',
-        // noDropdown: true,
-        children: [
-            {   id: 200,
-                label: 'SimpleTable',
-                path: 'index'},
-        ]
-    },
-]
 const user = {
   state: {
     userId: 0,
@@ -50,20 +25,6 @@ const user = {
   },
 
   actions: {
-    // // 登录
-    // Login({ commit }, userInfo) {
-    //   const username = userInfo.username.trim();
-    //   return new Promise((resolve, reject) => {
-    //     login(username, userInfo.password, userInfo.rememberMe).then(response => {
-    //         console.log(response)
-    //       const data = response.data;
-    //       setToken(data.token);
-    //       resolve();
-    //     }).catch(error => {
-    //       reject(error);
-    //     });
-    //   });
-    // },
 
     // 获取用户信息
     GetInfo({ commit, state }) {
