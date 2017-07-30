@@ -1,6 +1,31 @@
 import { login, logout, getInfo } from '@/api/login';
 import { getToken, setToken, removeToken } from '@/utils/authStorage';
 
+const data3 = [
+    {
+        id: 1,
+        label: 'Example',
+        path: '/example',
+        children: [
+            {
+                id: 100,
+                label: 'Form',
+                path: 'index'},
+        ]
+    },
+
+    {
+        id: 2,
+        label: 'Table',
+        path: '/table',
+        // noDropdown: true,
+        children: [
+            {   id: 200,
+                label: 'SimpleTable',
+                path: 'index'},
+        ]
+    },
+]
 const user = {
   state: {
     userId: 0,
@@ -40,13 +65,11 @@ const user = {
     //   });
     // },
 
-
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo().then(response => {
           const data = response.data;
-          console.log(data)
           commit('SET_AUTHS', data.auths);
           commit('SET_USER_ID', data.userId);
           commit('SET_NAME', data.userName);

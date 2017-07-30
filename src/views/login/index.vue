@@ -34,6 +34,7 @@
     import {isWscnEmail} from '@/utils/validate';
     import {login} from '@/api/login';
     import {setToken, getToken, removeToken} from '@/utils/authStorage';
+    import { mapGetters } from 'vuex';
 
     export default {
         name: 'login',
@@ -66,7 +67,32 @@
                         {required: true, trigger: 'blur'}
                     ]
                 },
-                loading: false
+                loading: false,
+                data3: [
+                    {
+                        id: 1,
+                        label: 'Example',
+                        path: '/example',
+                        children: [
+                            {
+                                id: 100,
+                                label: 'Form',
+                                path: 'index'},
+                        ]
+                    },
+
+                    {
+                        id: 2,
+                        label: 'Table',
+                        path: '/table',
+                        // noDropdown: true,
+                        children: [
+                            {   id: 200,
+                                label: 'SimpleTable',
+                                path: 'index'},
+                        ]
+                    },
+                ]
             }
         },
         methods: {

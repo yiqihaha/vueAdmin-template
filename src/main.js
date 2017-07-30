@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.component('icon-svg', IconSvg)
 
-const whiteList = ['/login'];
+const whiteList = ['/login','/authredirect'];
 router.beforeEach((to, from, next) => {
   NProgress.start();
   if (getToken()) {

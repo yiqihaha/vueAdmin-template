@@ -8,6 +8,7 @@ import Layout from '../views/layout/Layout';
 
 /* login */
 const Login = _import('login/index');
+const authRedirect = _import('login/authredirect');
 
 /* dashboard */
 const dashboard = _import('dashboard/index');
@@ -17,6 +18,7 @@ const Err404 = _import('404');
 
 /* demo page */
 const Form = _import('page/form');
+const Tree = _import('page/tree')
 const Table = _import('table/index');
 const ExampleTable = _import('example/table/table');
 
@@ -31,6 +33,7 @@ Vue.use(Router);
   **/
 export const constantRouterMap = [
   { path: '/login', component: Login, hidden: true },
+  { path: '/authredirect', component: authRedirect, hidden: true },
   { path: '/404', component: Err404, hidden: true },
   {
     path: '/',
@@ -50,17 +53,20 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
+    id: 1,
     path: '/example',
     component: Layout,
     redirect: 'noredirect',
     name: 'Example',
     icon: 'zujian',
     children: [
-      { path: 'index', component: Form, name: 'Form', icon: 'zonghe' }
+      { id: 100, path: 'index', component: Form, name: 'Form', icon: 'zonghe' },
+      { id: 101, path: 'tree', component: Tree, name: 'Tree', icon: 'zonghe' }
     ]
   },
 
   {
+    id: 2,
     path: '/table',
     component: Layout,
     redirect: 'noredirect',
@@ -68,8 +74,8 @@ export const asyncRouterMap = [
     icon: 'tubiaoleixingzhengchang',
     // noDropdown: true,
     children: [
-        { path: 'index', component: Table, name: 'SimpleTable', meta: { role: ['ROLE_ADMIN'] } },
-        { path: 'table', component: ExampleTable, name: '综合table', icon: 'zonghe', meta: { role: ['ROLE_ADMIN'] } }
+        { id: 200, path: 'index', component: Table, name: 'SimpleTable' },
+        { id: 201, path: 'table', component: ExampleTable, name: '综合table', icon: 'zonghe' }
         ]
   },
 
