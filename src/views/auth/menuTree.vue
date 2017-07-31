@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <el-tree
-                :data="data3"
+                :data="menu"
                 :span="4"
                 show-checkbox
                 default-expand-all
@@ -42,7 +42,7 @@
 
         data() {
             return {
-                data3: [
+                menu: [
                     {
                         id: 1,
                         label: 'Example',
@@ -63,7 +63,6 @@
                         id: 2,
                         label: 'Table',
                         path: '/table',
-                        // noDropdown: true,
                         children: [
                             {   id: 200,
                                 label: 'SimpleTable',
