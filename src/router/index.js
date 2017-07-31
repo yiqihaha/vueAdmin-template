@@ -14,7 +14,8 @@ const authRedirect = _import('login/authredirect');
 const dashboard = _import('dashboard/index');
 
 /* error page */
-const Err404 = _import('404');
+const Err404 = _import('error/404');
+const Err401 = _import('error/401');
 
 /* demo page */
 const Form = _import('page/form');
@@ -32,16 +33,17 @@ Vue.use(Router);
   * meta : `{ role: ['admin'] }`  will control the page role
   **/
 export const constantRouterMap = [
-  { path: '/login', component: Login, hidden: true },
-  { path: '/authredirect', component: authRedirect, hidden: true },
-  { path: '/404', component: Err404, hidden: true },
+  { path: '/login', component: _import('login/index'), hidden: true },
+  { path: '/authredirect', component: _import('login/authredirect'), hidden: true },
+  { path: '/404', component:  _import('error/404'), hidden: true },
+     { path: '/401', component: _import('error/401'), hidden: true },
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     name: 'Home',
     hidden: true,
-    children: [{ path: 'dashboard', component: dashboard }]
+    children: [{ path: 'dashboard', component: _import('dashboard/index') }]
   }
 ]
 
