@@ -1,8 +1,6 @@
 <template>
     <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened}">
-        <div class="sidebar-wrapper">
-            <sidebar class="sidebar-container"></sidebar>
-        </div>
+        <sidebar class="sidebar-container"></sidebar>
         <div class="main-container">
             <navbar></navbar>
             <app-main></app-main>
@@ -11,20 +9,20 @@
 </template>
 
 <script>
-    import { Navbar, Sidebar, AppMain } from '@/views/layout';
+    import { Navbar, Sidebar, AppMain } from 'views/layout';
 
     export default {
-      name: 'layout',
-      components: {
-        Navbar,
-        Sidebar,
-        AppMain
-      },
-      computed: {
-        sidebar() {
-          return this.$store.state.app.sidebar;
+        name: 'layout',
+        components: {
+            Navbar,
+            Sidebar,
+            AppMain
+        },
+        computed: {
+            sidebar() {
+                return this.$store.state.app.sidebar;
+            }
         }
-      }
     }
 </script>
 
@@ -36,44 +34,27 @@
         height: 100%;
         width: 100%;
         &.hideSidebar {
-            .sidebar-wrapper {
-                transform: translate(-140px, 0);
-                .sidebar-container {
-                    transform: translate(132px, 0);
-                }
-                &:hover {
-                    transform: translate(0, 0);
-                    .sidebar-container {
-                        transform: translate(0, 0);
-                    }
-                }
+            .sidebar-container{
+                width:36px;
             }
             .main-container {
-                margin-left: 40px;
+                margin-left: 36px;
             }
         }
-        .sidebar-wrapper {
+        .sidebar-container {
+            transition: width 0.28s ease-out;
             width: 180px;
+            height: 100%;
             position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
             z-index: 1001;
-            overflow: hidden;
-            transition: all .28s ease-out;
-        }
-        .sidebar-container {
-            transition: all .28s ease-out;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: -17px;
-            overflow-y: scroll;
+            background: red;
         }
         .main-container {
             min-height: 100%;
-            transition: all .28s ease-out;
+            transition: margin-left 0.28s ease-out;
             margin-left: 180px;
         }
     }
