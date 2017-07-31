@@ -8,10 +8,10 @@ import Layout from '../views/layout/Layout';
 
 /* login */
 const Login = _import('login/index');
-const authRedirect = _import('login/authredirect');
+const AuthRedirect = _import('login/authredirect');
 
 /* dashboard */
-const dashboard = _import('dashboard/index');
+const Dashboard = _import('dashboard/index');
 
 /* error page */
 const Err404 = _import('error/404');
@@ -34,7 +34,7 @@ Vue.use(Router);
   **/
 export const constantRouterMap = [
   { path: '/login', component: Login, hidden: true },
-  { path: '/authredirect', component: authRedirect, hidden: true },
+  { path: '/authredirect', component: AuthRedirect, hidden: true },
   { path: '/404', component:  Err404, hidden: true },
      { path: '/401', component: Err401, hidden: true },
   {
@@ -43,7 +43,7 @@ export const constantRouterMap = [
     redirect: '/dashboard',
     name: 'Home',
     hidden: true,
-    children: [{ path: 'dashboard', component: dashboard }]
+    children: [{ path: 'dashboard', component: Dashboard }]
   }
 ]
 
@@ -59,11 +59,11 @@ export const asyncRouterMap = [
     path: '/example',
     component: Layout,
     redirect: 'noredirect',
-    name: 'Example',
+    name: '系统设置',
     icon: 'zujian',
     children: [
       { id: 100, path: 'index', component: Form, name: 'Form', icon: 'zonghe' },
-      { id: 101, path: 'tree', component: Tree, name: 'Tree', icon: 'zonghe' }
+        { id: 101, path: 'tree', component: Tree, name: '权限设置', icon: 'zonghe' }
     ]
   },
 

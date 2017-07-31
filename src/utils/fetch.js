@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Message } from 'element-ui';
 import store from '../store';
-import { getToken } from '@/utils/authStorage';
+import { getToken, setToken } from '@/utils/authStorage';
 import router from '@/router'
 
 
@@ -14,7 +14,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   if (getToken()) {
-    config.headers['Authorization'] = 'Bearer ' + getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+    config.headers['authorization'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
   }
 
   return config;
@@ -27,6 +27,10 @@ service.interceptors.request.use(config => {
 //respone拦截器
 service.interceptors.response.use(
   response => {
+      console.log(response.headers['authorization'])
+      if(response.headers['authorization']){
+          setToken(response.headers['authorization'])
+      }
       return response
   },
   error => {
