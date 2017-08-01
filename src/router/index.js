@@ -36,7 +36,7 @@ export const constantRouterMap = [
   { path: '/login', component: Login, hidden: true },
   { path: '/authredirect', component: AuthRedirect, hidden: true },
   { path: '/404', component:  Err404, hidden: true },
-     { path: '/401', component: Err401, hidden: true },
+  { path: '/401', component: Err401, hidden: true },
   {
     path: '/',
     component: Layout,

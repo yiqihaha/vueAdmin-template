@@ -37,7 +37,7 @@ service.interceptors.response.use(
         if (error.response) {
             switch (error.response.status) {
                 case 401 : {
-                    MessageBox.alert('您的Token已过期，请重新登录！', '错误提示', {
+                    MessageBox.alert('您的登录已过期，请重新登录！', '错误提示', {
                         confirmButtonText: '确定',
                         callback: action => {
                             store.dispatch('FedLogOut').then(() => {
@@ -49,10 +49,12 @@ service.interceptors.response.use(
                 }
 
                 case 500 : {
-                    MessageBox.alert('服务器发生异常 ！', '错误提示', {
+                    MessageBox.alert('您的登录已过期，请重新登录！', '错误提示', {
                         confirmButtonText: '确定',
                         callback: action => {
-                            location.reload();
+                            store.dispatch('FedLogOut').then(() => {
+                                location.reload();
+                            })
                         }
                     });
 
