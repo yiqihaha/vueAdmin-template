@@ -26,9 +26,9 @@
       ])
     },
     created() {
-      if (this.auths.indexOf('ROLE_ADMIN') >= 0) {
-        return;
-      }
+//      if (this.auths.indexOf('ROLE_ADMIN') >= 0) {
+//        return;
+//      }
       this.currentRole = 'DefaultDashboard';
     }
   }

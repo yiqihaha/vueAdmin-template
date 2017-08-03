@@ -14,17 +14,21 @@ export function login(username, password, rememberMe) {
 
 export function getInfo() {
   return fetch({
-    url: '/api/userInfo',
+    url: '/api/userInfo/userInfo',
+    method: 'post',
+  });
+}
+
+export function getMenu() {
+  return fetch({
+    url: '/api/userInfo/getMenu',
     method: 'post',
   });
 }
 
 export function logout() {
   return fetch({
-    url: '/api/logout',
+    url: '/api/userInfo/logout',
     method: 'post'
   });
 }
-
-
-

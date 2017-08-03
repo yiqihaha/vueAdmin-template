@@ -17,10 +17,10 @@ import '@/assets/iconfont/iconfont'
 import IconSvg from '@/components/Icon-svg/index.vue'
 import { getToken } from '@/utils/authStorage'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
-Vue.component('icon-svg', IconSvg)
+Vue.component('icon-svg', IconSvg);
 Vue.use(vueWaves);
 
 // register global utility filters.

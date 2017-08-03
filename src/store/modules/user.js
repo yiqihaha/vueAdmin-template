@@ -7,6 +7,7 @@ const user = {
     userName: '',
     avatar: '',
     auths: [],
+    menu: [],
   },
 
   mutations: {
@@ -21,7 +22,10 @@ const user = {
     },
     SET_AUTHS: (state, auths) => {
       state.auths = auths;
-    }
+    },
+    SET_MENU: (state, menu) => {
+      state.menu = menu;
+    },
   },
 
   actions: {
@@ -32,6 +36,7 @@ const user = {
         getInfo().then(response => {
           const data = response.data;
           commit('SET_AUTHS', data.auths);
+          commit('SET_MENU', data.menu);
           commit('SET_USER_ID', data.userId);
           commit('SET_NAME', data.userName);
           commit('SET_AVATAR', data.avatar);
@@ -46,7 +51,8 @@ const user = {
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout().then(() => {
-          commit('SET_AUTHS', '');
+          commit('SET_MENU', []);
+          commit('SET_AUTHS', []);
           commit('SET_USER_ID', 0);
           commit('SET_NAME', '');
           commit('SET_AVATAR', '');
@@ -61,7 +67,8 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
-        commit('SET_AUTHS', '');
+        commit('SET_MENU', []);
+        commit('SET_AUTHS', []);
         commit('SET_USER_ID', 0);
         commit('SET_NAME', '');
         commit('SET_AVATAR', '');

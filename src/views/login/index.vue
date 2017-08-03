@@ -31,66 +31,66 @@
 </template>
 
 <script>
-    import {isWscnEmail} from '@/utils/validate';
-    import {login} from '@/api/login';
-    import {setToken, getToken, removeToken} from '@/utils/authStorage';
-    import { mapGetters } from 'vuex';
+  import {isWscnEmail} from '@/utils/validate';
+  import {login} from '@/api/login';
+  import {setToken, getToken, removeToken} from '@/utils/authStorage';
+  import {mapGetters} from 'vuex';
 
-    export default {
-        name: 'login',
-        data() {
-            const validateEmail = (rule, value, callback) => {
-                if (!isWscnEmail(value)) {
-                    callback(new Error('请输入正确的合法邮箱'));
-                } else {
-                    callback();
-                }
-            };
-            const validatePass = (rule, value, callback) => {
-                if (value.length < 6) {
-                    callback(new Error('密码不能小于6位'));
-                } else {
-                    callback();
-                }
-            };
-            return {
-                loginForm: {
-                    username: '',
-                    password: '',
-                    rememberMe: false
-                },
-                loginRules: {
-                    username: [
-                        {required: true, trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, trigger: 'blur'}
-                    ]
-                },
-                loading: false,
-            }
-        },
-        methods: {
-            handleLogin() {
-                this.$refs.loginForm.validate(valid => {
-                    if (valid) {
-                        this.loading = true;
-                        console.log(this.loginForm)
-                        login(this.loginForm.username, this.loginForm.password, this.loginForm.rememberMe).then(res => {
-                            setToken(res.data.id_token)
-                            this.$router.push({path: '/'});
-                        }).catch(() => {
-                            this.loading = false;
-                        });
-                    } else {
-                        removeToken();
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
-            },
+  export default {
+    name: 'login',
+    data() {
+      const validateEmail = (rule, value, callback) => {
+        if (!isWscnEmail(value)) {
+          callback(new Error('请输入正确的合法邮箱'));
+        } else {
+          callback();
         }
+      };
+      const validatePass = (rule, value, callback) => {
+        if (value.length < 6) {
+          callback(new Error('密码不能小于6位'));
+        } else {
+          callback();
+        }
+      };
+      return {
+        loginForm: {
+          username: '',
+          password: '',
+          rememberMe: false
+        },
+        loginRules: {
+          username: [
+            {required: true, trigger: 'blur'}
+          ],
+          password: [
+            {required: true, trigger: 'blur'}
+          ]
+        },
+        loading: false,
+      }
+    },
+    methods: {
+      handleLogin() {
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            this.loading = true;
+            console.log(this.loginForm)
+            login(this.loginForm.username, this.loginForm.password, this.loginForm.rememberMe).then(res => {
+              setToken(res.data.id_token)
+              this.$router.push({path: '/'});
+            }).catch(() => {
+              this.loading = false;
+            });
+          } else {
+            removeToken();
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
     }
+  }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
