@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <el-tree
-                :data="data"
+                :data="menu"
                 :span="4"
                 show-checkbox
                 default-expand-all
@@ -13,8 +13,8 @@
         </el-tree>
 
         <div class="buttons">
-            <el-button @click="getCheckedNodes">通过 node 获取</el-button>
-            <el-button @click="setCheckedNodes">通过 node 设置</el-button>
+            <el-button @click="getCheckedKeys">通过 key 获取</el-button>
+            <el-button @click="setCheckedKeys">通过 key 设置</el-button>
             <el-button @click="resetChecked">清空</el-button>
         </div>
     </div>
@@ -25,17 +25,12 @@
 
   export default {
     methods: {
-      getCheckedNodes() {
-        console.log(this.$refs.tree.getCheckedNodes());
+      getCheckedKeys() {
+        console.log(this.$refs.tree.getCheckedKeys());
       },
-      setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 9,
-          label: '三级 1-1-1'
-        }]);
+      setCheckedKeys() {
+        console.log(this.auths.split(','));
+        this.$refs.tree.setCheckedKeys(this.auths.split(','));
       },
       resetChecked() {
         this.$refs.tree.setCheckedKeys([]);
@@ -43,20 +38,17 @@
     },
     computed: {
       ...mapGetters({
-        menu: 'menu'
+        menu: 'menu',
+        auths: 'auths'
       })
-    },
-    mounted() {
-      console.log(JSON.stringify(this.menu));
-      this.data = this.menu;
     },
     data() {
       return {
-        data: undefined,
+        treeAuths: [],
         defaultProps: {
           children: 'children',
           label: 'label',
-          menuId: 'menuId'
+          parentId: 'parentId'
         }
       };
     }
