@@ -1,4 +1,4 @@
-import { asyncRouterMap, constantRouterMap } from '@/router/index';
+import {asyncRouterMap, constantRouterMap} from '@/router/index';
 
 function hasPermission(auths, route) {
   if (route.id) {
@@ -34,12 +34,13 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes({ commit }, data) {
+    GenerateRoutes({commit}, data) {
       return new Promise(resolve => {
-          const { auths } = data
-          let accessedRouters
-          accessedRouters = filterAsyncRouter(asyncRouterMap, auths)
-          commit('SET_ROUTERS', accessedRouters);
+        const {auths} = data
+        console.log(auths)
+        let accessedRouters
+        accessedRouters = filterAsyncRouter(asyncRouterMap, auths)
+        commit('SET_ROUTERS', accessedRouters);
         resolve();
       })
     }

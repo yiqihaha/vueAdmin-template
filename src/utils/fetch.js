@@ -2,7 +2,6 @@ import axios from 'axios';
 import {Message, MessageBox} from 'element-ui';
 import store from '../store';
 import {getToken, setToken} from '@/utils/authStorage';
-import router from '@/router'
 
 
 // 创建axios实例
@@ -36,17 +35,6 @@ service.interceptors.response.use(
         console.log('error : ' + error)
         if (error.response) {
             switch (error.response.status) {
-                case 401 : {
-                    MessageBox.alert('您的登录已过期，请重新登录！', '错误提示', {
-                        confirmButtonText: '确定',
-                        callback: action => {
-                            store.dispatch('FedLogOut').then(() => {
-                                location.reload();
-                            })
-                        }
-                    });
-
-                }
 
                 case 500 : {
                     MessageBox.alert('您的登录已过期，请重新登录！', '错误提示', {
@@ -57,17 +45,21 @@ service.interceptors.response.use(
                             })
                         }
                     });
+                    break;
 
                 }
 
-                default : MessageBox.alert('发生未知错误，请重新登录！', '错误提示', {
-                    confirmButtonText: '确定',
-                    callback: action => {
-                        store.dispatch('FedLogOut').then(() => {
-                            location.reload();
-                        })
-                    }
+              default : {
+                MessageBox.alert('您的登录已过期，请重新登录！', '错误提示', {
+                  confirmButtonText: '确定',
+                  callback: action => {
+                    store.dispatch('FedLogOut').then(() => {
+                      location.reload();
+                    })
+                  }
                 });
+
+              }
             }
         }
         return Promise.reject(error)

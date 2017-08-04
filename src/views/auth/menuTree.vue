@@ -9,24 +9,30 @@
                 ref="tree"
                 highlight-current
                 :props="defaultProps"
+                style="width: 40%"
         >
         </el-tree>
 
         <div class="buttons">
-            <el-button @click="getCheckedKeys">通过 key 获取</el-button>
-            <el-button @click="setCheckedKeys">通过 key 设置</el-button>
-            <el-button @click="resetChecked">清空</el-button>
+            <el-button @click="saveCheckedKeys">保存权限设置</el-button>
+            <!--<el-button @click="setCheckedKeys">设置</el-button>-->
+            <!--<el-button @click="resetChecked">清空</el-button>-->
         </div>
     </div>
 </template>
 
 <script>
   import {mapGetters} from 'vuex';
+  import {saveMenuForRole} from '@/api/login'
 
   export default {
     methods: {
-      getCheckedKeys() {
-        console.log(this.$refs.tree.getCheckedKeys());
+      saveCheckedKeys() {
+        const req = {
+          roleId : 2,
+          authList: this.$refs.tree.getCheckedKeys().filter(node => node > 99)
+        }
+        saveMenuForRole(req)
       },
       setCheckedKeys() {
         console.log(this.auths.split(','));
@@ -41,6 +47,9 @@
         menu: 'menu',
         auths: 'auths'
       })
+    },
+    mounted() {
+     this.setCheckedKeys();
     },
     data() {
       return {

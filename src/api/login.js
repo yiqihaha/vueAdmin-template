@@ -31,4 +31,13 @@ export function logout() {
     url: '/api/userInfo/logout',
     method: 'post'
   });
+
+}
+
+export function saveMenuForRole(req) {
+  return fetch({
+    url: '/api/userInfo/saveMenuForRole',
+    method: 'post',
+    data : req
+  });
 }
