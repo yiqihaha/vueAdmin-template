@@ -30,13 +30,15 @@
       saveCheckedKeys() {
         const req = {
           roleId : 2,
-          authList: this.$refs.tree.getCheckedKeys().filter(node => node > 99)
+          authList: this.$refs.tree.getCheckedKeys()
         }
+        console.log(this.$refs.tree.getCheckedKeys())
         saveMenuForRole(req)
       },
       setCheckedKeys() {
-        console.log(this.auths.split(','));
-        this.$refs.tree.setCheckedKeys(this.auths.split(','));
+        let authMenuToTree = [];
+        authMenuToTree =this.auths.split(',').filter(id => parseInt(id) > 99).map(id => parseInt(id));
+        this.$refs.tree.setCheckedKeys(authMenuToTree);
       },
       resetChecked() {
         this.$refs.tree.setCheckedKeys([]);
