@@ -42,6 +42,9 @@ router.beforeEach((to, from, next) => {
           store.dispatch('GenerateRoutes', { auths }).then(() => {
             router.addRoutes(store.getters.addRouters);
             next({ ...to });
+            if(from.path === '/login'){
+              location.reload()
+            }
           })
         })
       } else {

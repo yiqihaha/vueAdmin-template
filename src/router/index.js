@@ -22,6 +22,7 @@ const Form = _import('page/form');
 const Tree = _import('auth/menuTree')
 const Table = _import('table/index');
 const ExampleTable = _import('example/table/table');
+const ExampleTable2 = _import('example/table/table2');
 
 Vue.use(Router);
 
@@ -77,7 +78,8 @@ export const asyncRouterMap = [
     // noDropdown: true,
     children: [
         { id: 200, path: 'index', component: Table, name: 'SimpleTable' },
-        { id: 201, path: 'table', component: ExampleTable, name: '综合table', icon: 'zonghe' }
+        { id: 201, path: 'table', component: ExampleTable, name: '综合table', icon: 'zonghe' },
+        { id: 202, path: 'table2', component: ExampleTable2, name: '综合table2', icon: 'zonghe' }
         ]
   },
 

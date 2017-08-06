@@ -75,9 +75,8 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            console.log(this.loginForm)
             login(this.loginForm.username, this.loginForm.password, this.loginForm.rememberMe).then(res => {
-              setToken(res.data.id_token)
+              setToken(res.data.id_token);
               this.$router.push({path: '/'});
             }).catch(() => {
               this.loading = false;

@@ -56,6 +56,7 @@ const user = {
           commit('SET_USER_ID', 0);
           commit('SET_NAME', '');
           commit('SET_AVATAR', '');
+          commit('SET_ROUTERS',[]);
           removeToken();
           resolve();
         }).catch(error => {
@@ -72,6 +73,7 @@ const user = {
         commit('SET_USER_ID', 0);
         commit('SET_NAME', '');
         commit('SET_AVATAR', '');
+        commit('SET_ROUTERS',[]);
         removeToken();
         resolve();
       });

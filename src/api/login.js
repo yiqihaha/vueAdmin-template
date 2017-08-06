@@ -41,3 +41,10 @@ export function saveMenuForRole(req) {
     data : req
   });
 }
+
+export function fetchRoleWithAuthorities() {
+  return fetch({
+    url: '/api/userInfo/fetchRoleWithAuthorities',
+    method: 'post',
+  });
+}

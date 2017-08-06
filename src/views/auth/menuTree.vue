@@ -32,7 +32,6 @@
           roleId : 2,
           authList: this.$refs.tree.getCheckedKeys()
         }
-        console.log(this.$refs.tree.getCheckedKeys())
         saveMenuForRole(req)
       },
       setCheckedKeys() {
