@@ -1,13 +1,15 @@
-const TokenKey = 'id_token'
+import tokenStore from 'store2';
+
+const TokenKey = 'Admin-Token'
 
 export function getToken() {
-    return window.localStorage.getItem(TokenKey)
+    return tokenStore.local(TokenKey)
 }
 
 export function setToken(token) {
-    return window.localStorage.setItem(TokenKey, token)
+  tokenStore.local(TokenKey, token)
 }
 
 export function removeToken() {
-    return window.localStorage.clear()
+    return tokenStore.local(TokenKey, '')
 }

@@ -13,7 +13,8 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
     if (getToken()) {
-        config.headers['authorization'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers.Authorization = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Content-Type'] = 'application/json';
     }
 
     return config;
@@ -26,8 +27,8 @@ service.interceptors.request.use(config => {
 //respone拦截器
 service.interceptors.response.use(
     response => {
-        if (response.headers['authorization']) {
-            setToken(response.headers['authorization'])
+        if (response.headers.Authorization) {
+            setToken(response.headers.Authorization)
         }
         return response
     },
